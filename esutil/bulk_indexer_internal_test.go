@@ -293,8 +293,8 @@ func TestBulkIndexer(t *testing.T) {
 			atomic.AddUint64(&countFailed, 1)
 			failedIDs = append(failedIDs, item.DocumentID)
 
-			buf, err := ioutil.ReadAll(item.Body)
-			if err != nil {
+			buf, readErr := ioutil.ReadAll(item.Body)
+			if readErr != nil {
 				t.Fatalf("Unexpected error: %s", err)
 			}
 			failedItemBodies = append(failedItemBodies, string(buf))
